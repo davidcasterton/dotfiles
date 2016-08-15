@@ -1,1 +1,0 @@
-../../lucario/colors/lucario.vim

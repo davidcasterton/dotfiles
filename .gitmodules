@@ -3,7 +3,7 @@
 	url = https://github.com/magicmonty/bash-git-prompt.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline
@@ -22,3 +22,6 @@
 [submodule "vim/bundle/lucario"]
 	path = lucario
 	url = https://github.com/raphamorim/lucario.git
+[submodule "solarized"]
+	path = solarized
+	url = git://github.com/altercation/solarized.git

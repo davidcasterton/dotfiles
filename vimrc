@@ -2,7 +2,7 @@
 " install pathogen
 """"""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
-syntax on
+syntax enable
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -16,7 +16,7 @@ let g:airline#extensions#tabline#enabled=1
 " => VIM user interface
 """""""""""""""""""""""""""""""
 " Show line numbers
-set nu
+set number
 " Turn on formatted paste
 set paste
 " Turn on the Wild menu
@@ -48,6 +48,9 @@ imap <F10> <C-O>:set paste<CR>
 imap <F11> <nop>
 set pastetoggle=<F11>
 
+set colorcolumn=120
+set colorcolumn=+1        " highlight column after 'textwidth'
+
 """"""""""""""""""""""""""""
 " => Tags
 """"""""""""""""""""""""""""
@@ -65,10 +68,7 @@ set t_Co=256
 
 " Set the colorscheme (different for gui)
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-colorscheme solarized
+colorscheme lucario
 
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
@@ -76,6 +76,18 @@ set ffs=unix,mac,dos
 " Set the mouse to always show
 set mouse=a
 set nomh
+
+""""""""""""""""""""""""""""
+" syntastic
+""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 """"""""""""""""""""""""""""
 " => Files, backups and undo

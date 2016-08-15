@@ -126,6 +126,12 @@ set tabstop=4
 set ai
 set wrap
 
+""""""""""""""""""""""""""""
+" Misc
+""""""""""""""""""""""""""""
+" search highlighting
+hi Search   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white gui=underline
+
 " Auto remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
 

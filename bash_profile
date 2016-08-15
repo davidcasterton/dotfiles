@@ -15,3 +15,5 @@ export PIP_CONFIG_FILE=~/.pip/pip.conf
 
 # source python 2.7
 2.7
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

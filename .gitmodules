@@ -7,9 +7,6 @@
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline
-[submodule "vim/bundle/csv.vim"]
-	path = vim/bundle/csv.vim
-	url = https://github.com/chrisbra/csv.vim.git
 [submodule "vim/bundle/vim-virtualenv"]
 	path = vim/bundle/vim-virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv.git
@@ -25,3 +22,18 @@
 [submodule "solarized"]
 	path = solarized
 	url = git://github.com/altercation/solarized.git
+[submodule "vim/bundle/dracula-theme"]
+	path = vim/bundle/dracula-theme
+	url = https://github.com/dracula/vim.git
+[submodule "iterm"]
+	path = dracula/iterm
+	url = https://github.com/dracula/iterm.git
+[submodule "vim/bundle/darcula"]
+	path = vim/bundle/darcula
+	url = https://github.com/blueshirts/darcula.git
+[submodule "dracula/jetbrains"]
+	path = dracula/jetbrains
+	url = https://github.com/dracula/jetbrains.git
+[submodule "vim/bundle/rainbow_parentheses.vim"]
+	path = vim/bundle/rainbow_parentheses.vim
+	url = https://github.com/kien/rainbow_parentheses.vim.git

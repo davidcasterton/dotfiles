@@ -64,11 +64,10 @@ set tags=./tags;/
 syntax enable
 
 " set 256 terminal support
-set t_Co=256
+"set t_Co=256
 
 " Set the colorscheme (different for gui)
-set background=dark
-colorscheme solarized
+color dracula
 
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
@@ -98,7 +97,7 @@ set nowb
 set noswapfile
 
 " Auto change directory
-set acd
+"set acd
 
 " Echo the full path of file being edited
 nnoremap <leader>f :echo expand('%:p')<cr>
@@ -129,3 +128,15 @@ set wrap
 
 " Auto remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
+
+" rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" keyboard shortcuts
+map <D-Right> $
+map <D-Left> 0
+map <M-Right> w
+map <M-Left> b

@@ -64,7 +64,7 @@ set tags=./tags;/
 syntax enable
 
 " set 256 terminal support
-"set t_Co=256
+set t_Co=256
 
 " Set the colorscheme (different for gui)
 color dracula

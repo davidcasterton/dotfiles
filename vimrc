@@ -18,7 +18,7 @@ let g:airline#extensions#tabline#enabled=1
 " Show line numbers
 set number
 " Turn on formatted paste
-set paste
+"set paste
 " Turn on the Wild menu
 set wildmenu
 " Ignore compiled files
@@ -47,6 +47,14 @@ map <F11> :set nopaste<cr>
 imap <F10> <C-O>:set paste<CR>
 imap <F11> <nop>
 set pastetoggle=<F11>
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
 
 set colorcolumn=120
 set colorcolumn=+1        " highlight column after 'textwidth'

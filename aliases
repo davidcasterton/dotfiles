@@ -18,8 +18,9 @@ alias lsd='ls -l | grep "^d"'
 # git aliases
 alias gd="git diff"
 alias gp="git fetch --prune && git pull"
+alias gpsub="git submodule update --recursive --remote --merge --force"
+alias grevert="git reset --hard HEAD && git clean -fd"
 alias gs="printf '\n----- untracked files:\n' && git clean -dnx && printf '\n----- git status:\n' && git status"
-alias gsubpull="git submodule update --recursive --remote --merge --force"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

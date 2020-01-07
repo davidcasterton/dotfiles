@@ -37,3 +37,12 @@
 [submodule "vim/bundle/rainbow_parentheses.vim"]
 	path = vim/bundle/rainbow_parentheses.vim
 	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "vim/bundle/vim-pbtxt"]
+	path = vim/bundle/vim-pbtxt
+	url = https://github.com/cybrown-zoox/vim-pbtxt.git
+[submodule "vim/bundle/vim-flavored-markdown"]
+	path = vim/bundle/vim-flavored-markdown
+	url = https://github.com/jtratner/vim-flavored-markdown.git
+[submodule "vim/bundle/YouCompleteMe"]
+	path = vim/bundle/YouCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe.git

@@ -13,7 +13,13 @@ unset file
 
 export PIP_CONFIG_FILE=~/.pip/pip.conf
 
-# source python 2.7
-2.7
-
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# Set CLICOLOR if you want Ansi Colors in iTerm2
+export CLICOLOR=1
+
+# Set colors to match iTerm2 Terminal Colors
+export TERM=xterm-256color
+
+# silence Mac OS bash shell deprecation warning
+export BASH_SILENCE_DEPRECATION_WARNING=1

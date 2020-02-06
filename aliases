@@ -19,13 +19,18 @@ alias lsd='ls -l | grep "^d"'
 alias gd="git diff"
 alias gs="printf '\n----- untracked files:\n' && git clean -dnx && printf '\n----- git status:\n' && git status"
 alias ghash="git rev-parse HEAD"
-alias gp="echo $'\nFETCH & PRUNE:\n' && git fetch --prune ; echo $'\nGC:\n' && git gc ; gsubprune ; gsubpull; echo $'\nPULL:\n' && git pull"
+alias gp="gunlock ; echo $'\nFETCH & PRUNE:\n' && git fetch --prune ; gunlock ; gsubupdate ; gunlock ; echo $'\nPULL:\n' && git pull"
 alias grevert="git reset --hard HEAD && git clean -fd"
+gunlock() {
+    test -e .git/index.lock && echo $'REMOVING .git/index.lock' && rm .git/index.lock
+    test -e .git/gc.log && echo $'REMOVING .git/gc.log' && rm .git/gc.log
+}
 # git aliases - submodules
 alias gsubpull="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --recursive --remote --force"
 alias gsubrevert="echo $'\nSUBMODULE REVERT:\n' && git submodule foreach --recursive 'git reset --hard HEAD && git clean -fd'"
 alias gsubprune="echo $'\nSUBMODULE PRUNE:\n' && git submodule foreach --recursive 'git prune'"
 alias gsubclean="echo $'\nSUBMODULE CLEAN:\n' && git submodule foreach --recursive 'git clean -fd'"
+alias gsubupdate="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --init --recursive"
 
 # gif
 gif() {

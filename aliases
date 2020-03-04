@@ -15,6 +15,9 @@ alias cls="clear; pwd; ls -a"
 alias cll="clear; pwd; ll"
 alias lsd='ls -l | grep "^d"'
 
+# tmux
+alias t='tmux a -t sess || tmux new -s sess'
+
 # git aliases
 alias gd="git diff"
 alias gs="printf '\n----- untracked files:\n' && git clean -dnx && printf '\n----- git status:\n' && git status"

@@ -23,3 +23,7 @@ export TERM=xterm-256color
 
 # silence Mac OS bash shell deprecation warning
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi

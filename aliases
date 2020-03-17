@@ -16,7 +16,10 @@ alias cll="clear; pwd; ll"
 alias lsd='ls -l | grep "^d"'
 
 # tmux
-alias t='tmux a -t sess || tmux new -s sess'
+function t () {
+    [ -z "$1" ] && name="sess" || name=$1
+    tmux a -t $name || tmux new -s $name
+}
 
 # git aliases
 alias gd="git diff"

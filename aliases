@@ -17,7 +17,7 @@ alias lsd='ls -l | grep "^d"'
 
 # tmux
 function t () {
-    [ -z "$1" ] && name="sess" || name=$1
+    [ -z "$1" ] && name="1" || name=$1
     tmux a -t $name || tmux new -s $name
 }
 

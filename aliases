@@ -25,7 +25,7 @@ function t () {
 alias gd="git diff"
 alias gs="printf '\n----- untracked files:\n' && git clean -dnx && printf '\n----- git status:\n' && git status"
 alias ghash="git rev-parse HEAD"
-alias gp="gunlock ; echo $'\nFETCH & PRUNE:\n' && git fetch --prune ; gunlock ; gsubupdate ; gunlock ; echo $'\nPULL:\n' && git pull"
+alias gp="gunlock ; echo $'\nFETCH & PRUNE:\n' && git fetch --prune ; git prune ; gunlock ; gsubupdate ; gunlock ; echo $'\nPULL:\n' && git pull"
 alias grevert="git reset --hard HEAD && git clean -fd"
 gunlock() {
     test -e .git/index.lock && echo $'REMOVING .git/index.lock' && rm .git/index.lock

@@ -1,6 +1,8 @@
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
 
+export DISPLAY=:0.0
+
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 

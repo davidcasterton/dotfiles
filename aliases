@@ -21,6 +21,14 @@ function t () {
     tmux a -t $name || tmux new -s $name
 }
 
+# grep
+function greps () {
+    [ -z "${3}" ] && len="50" || len="${3}"
+    cmd="grep -r -E -o \".{0,$len}$1.{0,$len}\" ${2}"
+    echo $cmd
+    eval $cmd
+}
+
 # git aliases
 alias gd="git diff"
 alias gs="printf '\n----- untracked files:\n' && git clean -dnx && printf '\n----- git status:\n' && git status"

@@ -16,7 +16,7 @@ alias cll="clear; pwd; ll"
 alias lsd='ls -l | grep "^d"'
 
 # tmux
-function t () {
+function tm () {
     [ -z "$1" ] && name="1" || name=$1
     tmux a -t $name || tmux new -s $name
 }

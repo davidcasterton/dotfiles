@@ -81,7 +81,7 @@ color dracula
 set ffs=unix,mac,dos
 
 " Set the mouse to always show
-set mouse=a
+set mouse=r
 set nomh
 
 """"""""""""""""""""""""""""

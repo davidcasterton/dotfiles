@@ -19,9 +19,6 @@
 [submodule "vim/bundle/lucario"]
 	path = lucario
 	url = https://github.com/raphamorim/lucario.git
-[submodule "solarized"]
-	path = solarized
-	url = git://github.com/altercation/solarized.git
 [submodule "vim/bundle/dracula-theme"]
 	path = vim/bundle/dracula-theme
 	url = https://github.com/dracula/vim.git

@@ -57,7 +57,7 @@ alias gsubupdate="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --init -
 
 # gif
 gif() {
-    ffmpeg -i "$1" -filter_complex "[0:v] fps=10,scale=w=1080:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$2"
+    /Applications/ffmpeg -i "$1" -filter_complex "[0:v] fps=10,scale=w=1080:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$2"
 }
 
 # Add an "alert" alias for long running commands.  Use like so:

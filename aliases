@@ -34,7 +34,8 @@ alias gd="git diff"
 alias gs="printf '\n----- untracked files:\n' && git clean -dnx && printf '\n----- git status:\n' && git status"
 alias ghash="git rev-parse HEAD"
 alias glog="git log --oneline"
-alias gp="gunlock ; git pull ; git gc ; gsubprune ; gunlock ; gsubupdate"
+alias gp="gunlock ; git prune; git pull"
+alias gps="gunlock ; git prune; git pull ; gsubprune ; gunlock ; gsubupdate"
 alias grevert="gunlock; git reset --hard HEAD && git clean -fd"
 gunlock() {
     test -e .git/index.lock && echo $'REMOVING .git/index.lock' && rm .git/index.lock

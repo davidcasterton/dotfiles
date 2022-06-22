@@ -34,18 +34,24 @@ alias gd="git diff"
 alias gs="printf '\n----- untracked files:\n' && git clean -dnx && printf '\n----- git status:\n' && git status"
 alias ghash="git rev-parse HEAD"
 alias glog="git log --oneline"
-alias gp="gunlock ; echo $'\nFETCH & PRUNE:\n' && git fetch --prune ; git prune ; echo $'\nPULL:\n' && git pull"
-alias gps="gunlock ; echo $'\nFETCH & PRUNE:\n' && git fetch --prune ; git prune ; gsubprune ; gunlock ; gsubupdate ; gunlock ; echo $'\nPULL:\n' && git pull"
+alias gp="gunlock ; git pull ; git gc ; gsubprune ; gunlock ; gsubupdate"
 alias grevert="gunlock; git reset --hard HEAD && git clean -fd"
 gunlock() {
     test -e .git/index.lock && echo $'REMOVING .git/index.lock' && rm .git/index.lock
     test -e .git/gc.log && echo $'REMOVING .git/gc.log' && rm .git/gc.log
 }
 alias gbdc="git branch -a | grep dcasterton"
+gcleanbranches() {
+	git fetch -p
+	git prune
+	rm .git/gc.log -f
+	git remote prune origin
+	git branch -vv | grep -oP '(?<=\* |  )(\S+?)(?= +\S+ \[origin\S+: gone\].*)' | awk '{print $1}' | xargs git branch -D
+}
 # git aliases - submodules
 alias gsubpull="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --recursive --remote --force"
 alias gsubrevert="echo $'\nSUBMODULE REVERT:\n' && git submodule foreach --recursive 'git reset --hard HEAD && git clean -fd'"
-alias gsubprune="echo $'\nSUBMODULE PRUNE:\n' && git submodule foreach --recursive 'git prune'"
+alias gsubprune="echo $'\nSUBMODULE PRUNE:\n' && git submodule foreach --recursive 'git fetch --prune'"
 alias gsubclean="echo $'\nSUBMODULE CLEAN:\n' && git submodule foreach --recursive 'git clean -fd'"
 alias gsubupdate="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --init --recursive"
 

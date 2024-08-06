@@ -83,8 +83,6 @@ for file in ~/.{bash_prompt,exports,aliases}; do
 done
 unset file
 
-export PIP_CONFIG_FILE=~/.pip/pip.conf
-
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

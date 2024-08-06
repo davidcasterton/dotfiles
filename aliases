@@ -44,12 +44,13 @@ gunlock() {
     git prune
 }
 alias gbdc="git branch -a | grep dcasterton"
-gcleanbranches() {
+gclean() {
 	git fetch -p
 	git prune
 	rm .git/gc.log -f
 	git remote prune origin
 	git branch -vv | grep -oP '(?<=\* |  )(\S+?)(?= +\S+ \[origin\S+: gone\].*)' | awk '{print $1}' | xargs git branch -D
+    git gc --prune=now
 }
 # git aliases - submodules
 alias gsubpull="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --recursive --remote --force"

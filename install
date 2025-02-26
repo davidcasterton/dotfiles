@@ -1,10 +1,10 @@
 CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 ln -s ${CWD}/aliases ~/.aliases
-#ln -s ${CWD}/bash-git-prompt ~/.bash-git-prompt
+ln -s ${CWD}/bash-git-prompt ~/.bash-git-prompt
 #ln -s ${CWD}/bash_profile ~/.bash_profile
-#ln -s ${CWD}/bash_prompt ~/.bash_prompt
-#ln -s ${CWD}/bashrc ~/.bashrc
+ln -s ${CWD}/bash_prompt ~/.bash_prompt
+ln -s ${CWD}/bashrc ~/.bashrc
 ln -s ${CWD}/exports ~/.exports
 ln -s ${CWD}/vim ~/.vim
 ln -s ${CWD}/vimrc ~/.vimrc

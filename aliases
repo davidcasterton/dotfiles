@@ -43,7 +43,7 @@ gunlock() {
     git remote prune origin
     git prune
 }
-alias gbdc="git branch -a | grep dcasterton"
+alias gbdc="git branch -a | grep davidc"
 #gclean() {
 #	git fetch -p
 #	git prune

@@ -20,6 +20,7 @@ function tm () {
     [ -z "$1" ] && name="1" || name=$1
     tmux a -t $name || tmux new -s $name
 }
+alias tml="tmux list-sessions"
 
 # grep
 function greps () {
@@ -43,7 +44,14 @@ gunlock() {
     git remote prune origin
     git prune
 }
-alias gbdc="git branch -a | grep davidc"
+alias gbdc="git branch -a | grep davidc; git branch -a | grep dcasterton"
+alias gpu="git push"
+alias gpn='git push --set-upstream origin $(git symbolic-ref --short HEAD)'
+alias gs='git status'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
 #gclean() {
 #	git fetch -p
 #	git prune
@@ -61,7 +69,7 @@ alias gsubupdate="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --init -
 
 # gif
 gif() {
-    /Applications/ffmpeg -i "$1" -filter_complex "[0:v] fps=10,scale=w=1080:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$2"
+    ffmpeg -i "$1" -filter_complex "[0:v] fps=10,scale=w=1080:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$2"
 }
 
 # Add an "alert" alias for long running commands.  Use like so:

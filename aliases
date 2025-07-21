@@ -52,24 +52,40 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
-#gclean() {
-#	git fetch -p
-#	git prune
-#	rm .git/gc.log -f
-#	git remote prune origin
-#	git branch -vv | grep -oP '(?<=\* |  )(\S+?)(?= +\S+ \[origin\S+: gone\].*)' | awk '{print $1}' | xargs git branch -D
-#    git gc --prune=now
-#}
+gclean() {
+	git fetch -p
+	git prune
+	rm .git/gc.log -f
+	git remote prune origin
+	git branch -vv | grep -oP '(?<=\* |  )(\S+?)(?= +\S+ \[origin\S+: gone\].*)' | awk '{print $1}' | xargs git branch -D
+    git gc --prune=now
+}
 # git aliases - submodules
 alias gsubpull="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --recursive --remote --force"
 alias gsubrevert="echo $'\nSUBMODULE REVERT:\n' && git submodule foreach --recursive 'git reset --hard HEAD && git clean -fd'"
 alias gsubprune="echo $'\nSUBMODULE PRUNE:\n' && git submodule foreach --recursive 'git fetch --prune'"
 alias gsubclean="echo $'\nSUBMODULE CLEAN:\n' && git submodule foreach --recursive 'git clean -fd'"
 alias gsubupdate="echo $'\nSUBMODULE UPDATE:\n' && git submodule update --init --recursive"
+# check if a branch has a commit. 1st arg: branch, 2nd arg commit
+alias gwhere='f() { git log "$1" --oneline | grep "$2"; }; f'
+# check if release branches have a commit
+grel() {
+  if [ -z "$1" ]; then
+    echo "Usage: grel <commit-hash>"
+    return 1
+  fi
+  git branch -r --contains "$1" | grep 'release'
+}
 
 # gif
 gif() {
     ffmpeg -i "$1" -filter_complex "[0:v] fps=10,scale=w=1080:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$2"
+}
+
+# merge master into current branch
+mma() {
+    git fetch origin master:master
+    git merge master
 }
 
 # Add an "alert" alias for long running commands.  Use like so:

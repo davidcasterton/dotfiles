@@ -52,7 +52,7 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
-gclean() {
+function gclean {
 	git fetch -p
 	git prune
 	rm .git/gc.log -f

@@ -6,6 +6,16 @@ case $- in
       *) return;;
 esac
 
+
+# for file in ~/.exports ~/.aliases ~/.localrc; do
+#    [[ -r "$file" ]] && source "$file"
+#done
+#unset file
+
+#if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "cursor" ]]; then
+#  return
+#fi
+
 # Prevent duplicate lines or space-prefixed commands in history
 HISTCONTROL=ignoreboth
 
@@ -50,19 +60,19 @@ else
     PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
-# Simplify prompt if inside a tool like Cursor IDE (optional)
-# if [ "$INSIDE_CURSOR" = "true" ]; then
-#     PS1='\u@\h:\w\$ '
-# fi
-
 # Colored GCC output
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Source dotfiles if present
-for file in ~/.bash_prompt ~/.exports ~/.aliases; do
+for file in ~/.localrc ~/.exports ~/.aliases; do
     [[ -r "$file" ]] && source "$file"
 done
 unset file
+
+# set bash prompt outside of cursor
+if [[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "cursor" ]]; then
+    [ -r ~/.bash_prompt ] && source ~/.bash_prompt
+fi
 
 # Programmable completion
 if ! shopt -oq posix; then
@@ -72,9 +82,6 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 fi
-
-# Source local customizations
-[ -r ~/.localrc ] && source ~/.localrc
 
 # NVM setup
 export NVM_DIR="$HOME/.nvm"
@@ -92,3 +99,9 @@ for path_entry in "$YARN_BIN" "$YARN_GLOBAL_BIN"; do
     esac
 done
 unset path_entry YARN_BIN YARN_GLOBAL_BIN
+
+# Simplify prompt if inside a tool like Cursor IDE (optional)
+if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "cursor" ]]; then
+    PS1='\u@\h:\w\$ '
+fi
+

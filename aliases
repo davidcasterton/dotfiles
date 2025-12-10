@@ -88,6 +88,17 @@ mma() {
     git merge master
 }
 
+# rebase current branch on master
+rma() {
+    git fetch origin master:master
+    git rebase master
+}
+rmai() {
+    git fetch origin master:master
+    git rebase -i master
+}
+
+# speed up video 2x
 speed2x() {
     if [ -z "$1" ]; then
         echo "Usage: speed2x <video-file>"
@@ -109,6 +120,7 @@ speed2x() {
     echo "Output written to: $output"
 }
 
+# check if a git sha is in a branch
 shain() {
     local sha="$1"
     local branch="$2"

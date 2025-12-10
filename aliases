@@ -88,6 +88,46 @@ mma() {
     git merge master
 }
 
+speed2x() {
+    if [ -z "$1" ]; then
+        echo "Usage: speed2x <video-file>"
+        return 1
+    fi
+
+    input="$1"
+
+    # Extract filename without extension and extension
+    filename="${input%.*}"
+    extension="${input##*.}"
+
+    # Create output file name
+    output="${filename}-2x.${extension}"
+
+    # Run ffmpeg to speed up video
+    ffmpeg -i "$input" -filter:v "setpts=0.5*PTS" -filter:a "atempo=2.0" "$output"
+
+    echo "Output written to: $output"
+}
+
+shain() {
+    local sha="$1"
+    local branch="$2"
+
+    # Validate arguments
+    if [[ -z "$sha" || -z "$branch" ]]; then
+        echo "Usage: shain <commit_sha> <branch>"
+        echo "Example: shain abc1234 main"
+        return 1
+    fi
+
+    # Run check
+    if git merge-base --is-ancestor "$sha" "$branch" 2>/dev/null; then
+        echo "yes"
+    else
+        echo "no"
+    fi
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

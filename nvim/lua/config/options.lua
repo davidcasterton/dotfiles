@@ -8,8 +8,6 @@ vim.opt.expandtab = true
 -- Line numbers
 vim.opt.number = true
 
--- 120-character column guide
-vim.opt.colorcolumn = "120"
 
 -- Search
 vim.opt.ignorecase = true

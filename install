@@ -76,5 +76,25 @@ if [ -d "$HOME/.oh-my-zsh" ] && [ -d "${CWD}/dracula/zsh" ]; then
     symlink "${CWD}/dracula/zsh/lib"               "$THEMES_DIR/lib"
 fi
 
+# ── Neovim ────────────────────────────────────────────────────────────────────
+
+if ! command -v nvim >/dev/null 2>&1; then
+    echo ""
+    if [ "$OS" = "Linux" ]; then
+        read -rp "Neovim not found. Install via snap? [y/N] " reply
+        if [[ "$reply" =~ ^[Yy]$ ]]; then
+            sudo snap install nvim --classic
+            echo "  installed neovim"
+        fi
+    else
+        echo "  neovim not found — install it with: brew install neovim"
+    fi
+fi
+
+# ── Neovim config ─────────────────────────────────────────────────────────────
+
+mkdir -p ~/.config
+symlink "${CWD}/nvim" ~/.config/nvim
+
 echo ""
 echo "Done."

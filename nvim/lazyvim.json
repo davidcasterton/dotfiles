@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LazyVim/LazyVim/main/schemas/extras.json",
+  "extras": [
+
+  ],
+  "news": {
+    "NEWS.md": "11866"
+  },
+  "version": 8
+}

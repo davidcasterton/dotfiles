@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal system configuration for macOS and Ubuntu. Covers shell (bash + zsh), vim, git workflow aliases, and environment variables. All files are symlinked from this repo into `~`, so changes here take effect immediately without re-running the installer.
+Personal system configuration for macOS and Ubuntu. Covers shell (bash + zsh), Neovim (primary editor), vim (SSH fallback), git workflow aliases, and environment variables. All files are symlinked from this repo into `~`, so changes here take effect immediately without re-running the installer.
 
 ---
 
@@ -19,9 +19,42 @@ Personal system configuration for macOS and Ubuntu. Covers shell (bash + zsh), v
 - `bash_profile`: macOS login shell setup — Homebrew PATH, color support
 - Inside VS Code / Cursor terminals the fancy prompt is skipped in favor of a plain `user@host:dir$`
 
-### Vim — `vimrc`
+### Neovim — `nvim/`
 
-Plugin manager: [Pathogen](https://github.com/tpope/vim-pathogen)
+Primary editor. Uses [LazyVim](https://lazyvim.org) — a batteries-included distribution that provides IDE features out of the box. Plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim) and install automatically on first launch; nothing is committed to this repo.
+
+**What LazyVim provides on first launch:**
+- LSP autocomplete and inline diagnostics (via Mason + nvim-lspconfig)
+- Fuzzy file/text search (Telescope)
+- File tree (neo-tree)
+- Inline git diff signs (gitsigns)
+- Treesitter syntax highlighting
+- Which-key popup for discovering keybindings
+
+**Customizations on top of LazyVim defaults:**
+- Dracula colorscheme (`Mofiqul/dracula.nvim`) — matches vim and zsh theme
+- 4-space indentation, 120-column guide
+- `<M-Right>` / `<M-Left>` word navigation (normal and insert mode)
+- Auto-strip trailing whitespace on save
+- Real tabs in Makefiles
+
+**Adding language support:** Edit `nvim/lazyvim.json` and add extras from the [LazyVim extras list](https://lazyvim.org/extras), e.g.:
+```json
+{
+  "extras": [
+    "lazyvim.plugins.extras.lang.python",
+    "lazyvim.plugins.extras.lang.go"
+  ]
+}
+```
+
+**Adding or overriding plugins:** Drop a `.lua` file in `nvim/lua/plugins/`. Each file returns a table of lazy.nvim plugin specs.
+
+See [nvim.md](nvim.md) for a full usage guide, common commands, and learning resources.
+
+### Vim — `vimrc` (SSH fallback)
+
+Used when Neovim is unavailable (e.g. remote SSH to a server). Plugin manager: [Pathogen](https://github.com/tpope/vim-pathogen)
 
 | Plugin | Purpose |
 |--------|---------|
@@ -125,6 +158,8 @@ The installer will:
 3. Offer to set zsh as your default shell (`chsh`)
 4. Offer to install Oh My Zsh (using `--keep-zshrc` so your symlinked `~/.zshrc` is preserved)
 5. Symlink the Dracula zsh theme into `~/.oh-my-zsh/custom/themes/`
+6. **Linux only** — offer to `snap install nvim --classic` if Neovim is not present
+7. Symlink `nvim/` → `~/.config/nvim`
 
 Existing files are never overwritten — the installer skips any destination that already exists.
 

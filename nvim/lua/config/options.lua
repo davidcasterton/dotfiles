@@ -33,3 +33,6 @@ vim.opt.fileformats = "unix,mac,dos"
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
+
+-- Disable current line highlight
+-- vim.opt.cursorline = false

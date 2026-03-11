@@ -1,4 +1,5 @@
 # linux aliases
+alias vim="nvim"
 alias ll='ls -lha'
 alias cls="clear; pwd; ls -a"
 alias cll="clear; pwd; ll"

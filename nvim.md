@@ -57,7 +57,7 @@ Run the built-in tutorial to learn the basics interactively:
 |-----|--------|
 | `h j k l` | Left / down / up / right |
 | `w` / `b` | Next / previous word |
-| `M-Right` / `M-Left` | Next / previous word (Alt+Arrow — custom) |
+| `Option+Right` / `Option+Left` | Next / previous word (Ghostty sends `<M-f>`/`<M-b>`) |
 | `0` / `$` | Start / end of line |
 | `gg` / `G` | Top / bottom of file |
 | `Ctrl+d` / `Ctrl+u` | Scroll half page down / up |

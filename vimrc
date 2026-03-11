@@ -147,8 +147,8 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" keyboard shortcuts
-map <M-Right> w
-map <M-Left> b
-imap <M-Right> <C-o>w
-imap <M-Left> <C-o>b
+" keyboard shortcuts — Ghostty sends <M-f>/<M-b> for Option+Arrow
+map <M-f> w
+map <M-b> b
+imap <M-f> <C-o>w
+imap <M-b> <C-o>b

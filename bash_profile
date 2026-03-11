@@ -1,29 +1,17 @@
-# Originally from https://raw.github.com/nicolashery/mac-dev-setup/master/.aliases
-# Add Homebrew `/usr/local/bin` and User `~/bin` to the `$PATH`
-PATH=/usr/local/bin:$HOME/bin:$HOME/Code/bash_scripts:$PATH
+# macOS login shell config — loaded by bash on macOS (not used when zsh is the default shell)
+# Machine-specific PATH additions belong in ~/.localrc
+
+# Homebrew and ~/bin
+PATH="/usr/local/bin:$HOME/bin:$PATH"
 export PATH
 
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{bash_prompt,exports,aliases}; do
-  [ -r "$file" ] && source "$file"
-done
-unset file
-
-export PIP_CONFIG_FILE=~/.pip/pip.conf
-
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-# Set CLICOLOR if you want Ansi Colors in iTerm2
 export CLICOLOR=1
-
-# Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color
 
-# silence Mac OS bash shell deprecation warning
+# Silence macOS bash deprecation warning (zsh is the recommended default)
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# Source bashrc for interactive settings
 if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
+    source ~/.bashrc
 fi

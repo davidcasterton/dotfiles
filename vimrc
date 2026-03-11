@@ -2,7 +2,6 @@
 " install pathogen
 """"""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
-syntax on
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -56,8 +55,7 @@ function! XTermPasteBegin()
   return ""
 endfunction
 
-set colorcolumn=120
-set colorcolumn=+1        " highlight column after 'textwidth'
+set colorcolumn=120       " highlight column 120
 
 """"""""""""""""""""""""""""
 " => Tags
@@ -150,7 +148,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " keyboard shortcuts
-map <D-Right> $
-map <D-Left> 0
 map <M-Right> w
 map <M-Left> b
+imap <M-Right> <C-o>w
+imap <M-Left> <C-o>b

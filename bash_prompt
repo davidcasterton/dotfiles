@@ -22,8 +22,8 @@ function prompt_callback {
     fi
 }
 
-#GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${BoldMagenta}\u ${Cyan}\h${ResetColor}"
-GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${Cyan}desk${ResetColor}"
+# MACHINE_ID can be set in ~/.localrc to show a custom identifier instead of user@host
+GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${Cyan}${MACHINE_ID:-\u@\h}${ResetColor}"
 GIT_PROMPT_END="\n${White}$ ${ResetColor}"
 
 source ~/.bash-git-prompt/gitprompt.sh

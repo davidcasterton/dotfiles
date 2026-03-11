@@ -22,9 +22,9 @@
 [submodule "vim/bundle/dracula-theme"]
 	path = vim/bundle/dracula-theme
 	url = https://github.com/dracula/vim.git
-[submodule "iterm"]
-	path = dracula/iterm
-	url = https://github.com/dracula/iterm.git
+[submodule "dracula/zsh"]
+	path = dracula/zsh
+	url = https://github.com/dracula/zsh.git
 [submodule "vim/bundle/darcula"]
 	path = vim/bundle/darcula
 	url = https://github.com/blueshirts/darcula.git

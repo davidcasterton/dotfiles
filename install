@@ -1,10 +1,80 @@
-CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#!/usr/bin/env bash
+set -e
 
-ln -s ${CWD}/aliases ~/.aliases
-ln -s ${CWD}/bash-git-prompt ~/.bash-git-prompt
-#ln -s ${CWD}/bash_profile ~/.bash_profile
-ln -s ${CWD}/bash_prompt ~/.bash_prompt
-ln -s ${CWD}/bashrc ~/.bashrc
-ln -s ${CWD}/exports ~/.exports
-ln -s ${CWD}/vim ~/.vim
-ln -s ${CWD}/vimrc ~/.vimrc
+CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+OS="$(uname -s)"
+
+symlink() {
+    local src="$1" dst="$2"
+    if [ -e "$dst" ] || [ -L "$dst" ]; then
+        echo "  skipping $dst (already exists)"
+    else
+        ln -s "$src" "$dst"
+        echo "  linked $dst"
+    fi
+}
+
+echo "==> Linking dotfiles..."
+symlink "${CWD}/aliases"      ~/.aliases
+symlink "${CWD}/exports"      ~/.exports
+symlink "${CWD}/vim"          ~/.vim
+symlink "${CWD}/vimrc"        ~/.vimrc
+
+# Bash
+symlink "${CWD}/bash_prompt"  ~/.bash_prompt
+symlink "${CWD}/bashrc"       ~/.bashrc
+
+# Zsh
+symlink "${CWD}/zshrc"        ~/.zshrc
+
+# ── zsh ───────────────────────────────────────────────────────────────────────
+
+if ! command -v zsh >/dev/null 2>&1; then
+    echo ""
+    if [ "$OS" = "Linux" ]; then
+        read -rp "zsh not found. Install via apt? [y/N] " reply
+        if [[ "$reply" =~ ^[Yy]$ ]]; then
+            sudo apt-get update && sudo apt-get install -y zsh
+            echo "  installed zsh"
+        fi
+    else
+        echo "  zsh not found — install it manually (brew install zsh)"
+    fi
+fi
+
+if command -v zsh >/dev/null 2>&1; then
+    current_shell="$(basename "$SHELL")"
+    if [ "$current_shell" != "zsh" ]; then
+        echo ""
+        read -rp "Make zsh your default shell? [y/N] " reply
+        if [[ "$reply" =~ ^[Yy]$ ]]; then
+            chsh -s "$(which zsh)"
+            echo "  default shell set to zsh — restart your terminal to apply"
+        fi
+    fi
+fi
+
+# ── Oh My Zsh ─────────────────────────────────────────────────────────────────
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo ""
+    read -rp "Oh My Zsh not found. Install it? [y/N] " reply
+    if [[ "$reply" =~ ^[Yy]$ ]]; then
+        # --keep-zshrc prevents the installer from overwriting our symlinked ~/.zshrc
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+            "" --unattended --keep-zshrc
+        echo "  installed Oh My Zsh"
+    fi
+fi
+
+# ── Dracula zsh theme ─────────────────────────────────────────────────────────
+
+if [ -d "$HOME/.oh-my-zsh" ] && [ -d "${CWD}/dracula/zsh" ]; then
+    THEMES_DIR="$HOME/.oh-my-zsh/custom/themes"
+    mkdir -p "$THEMES_DIR"
+    symlink "${CWD}/dracula/zsh/dracula.zsh-theme" "$THEMES_DIR/dracula.zsh-theme"
+    symlink "${CWD}/dracula/zsh/lib"               "$THEMES_DIR/lib"
+fi
+
+echo ""
+echo "Done."

@@ -7,15 +7,6 @@ case $- in
 esac
 
 
-# for file in ~/.exports ~/.aliases ~/.localrc; do
-#    [[ -r "$file" ]] && source "$file"
-#done
-#unset file
-
-#if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "cursor" ]]; then
-#  return
-#fi
-
 # Prevent duplicate lines or space-prefixed commands in history
 HISTCONTROL=ignoreboth
 
@@ -53,11 +44,11 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# Define user-friendly and IDE-compatible prompt
+# Set basic prompt; overridden below by bash_prompt for interactive terminals
 if [ "$color_prompt" = yes ]; then
     PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
 # Colored GCC output
@@ -69,7 +60,7 @@ for file in ~/.localrc ~/.exports ~/.aliases; do
 done
 unset file
 
-# set bash prompt outside of cursor
+# Use full git-aware prompt outside of IDEs; IDEs get the plain prompt set above
 if [[ "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "cursor" ]]; then
     [ -r ~/.bash_prompt ] && source ~/.bash_prompt
 fi
@@ -99,9 +90,4 @@ for path_entry in "$YARN_BIN" "$YARN_GLOBAL_BIN"; do
     esac
 done
 unset path_entry YARN_BIN YARN_GLOBAL_BIN
-
-# Simplify prompt if inside a tool like Cursor IDE (optional)
-if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "cursor" ]]; then
-    PS1='\u@\h:\w\$ '
-fi
 

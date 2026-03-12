@@ -38,3 +38,4 @@ for path_entry in "$YARN_BIN" "$YARN_GLOBAL_BIN"; do
     esac
 done
 unset path_entry YARN_BIN YARN_GLOBAL_BIN
+export PATH="$HOME/.local/bin:$PATH"
